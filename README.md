@@ -3,8 +3,8 @@ Assignments
 
 This is the [CSE-20189-SP16] reading and homework assignments repository for:
 
-* **Name**:  Dommer McDomerson
-* **NetID**: dmcdomers
+* **Name**:  Andrew Munch
+* **NetID**: amunch
 
 Readings
 --------
