@@ -28,7 +28,7 @@ stylize() {
 ELINKS_FLAGS="-force-html -dump -dump-width $(tput cols) -no-numbering -no-references"
 
 case $(elinks -version | awk '{print $2}' | head -n 1) in
-    0.12.*|0.13.*)
+    0.12*|0.13*)
     ELINKS_FLAGS="$ELINKS_FLAGS -dump-color-mode 1"
     ;;
 esac
