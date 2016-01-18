@@ -21,4 +21,27 @@ This will create the link cse202189 to the specified path, and all the user need
 	$ cd cse202189
 
 
-**3.**
+**3.** To determine the size of a file, use the ls command with the -l option to give a long description of the specified file.  For a file named BigFile, the following command can be used:
+	
+	$ ls -l BigFile
+
+The output of the command will be something like the following:
+
+	-rw-r--r--  1 andymunch  staff  30 Jan 17 21:04 BigFile
+
+The number before the specified month, in this case 30, is the size of the file in bytes.
+
+**4.** As with determining the size of a file, determining the size of a directory is similar, however, we use the du command, with the -h option ot make it more readable.
+
+	$ du -h MyFolder
+
+This will return something like the following:
+	
+	8.0K	MyFolder
+
+This is the size of the directory, given in bytes.
+
+**5.**
+	
+
+	
