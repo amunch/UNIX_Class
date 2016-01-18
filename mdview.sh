@@ -21,6 +21,7 @@ fi
 stylize() {
      sed -e 's|pre>|p style="color:green;">|g' \
 	 -e 's|<h\([0-9]\)>|<h\1 style="color:yellow;">|g' \
+	 -e 's|<code>|<code style="color:green;">|g' \
 	 -e 's|<strong>|<strong style="color:magenta;">|g'
 }
 
