@@ -12,7 +12,7 @@ Next, use the following chmod command to set the permissions to private and only
 This will create the file private only readable by you.
 
 
-**2.** To create a symobolic link in your home directory for the specified afs ppath, /afs/nd.edu/coursesp.16/cse/cse20189.01, use the ln command, with the -s option to create a symlink.  The form for this command is ln -s targetfile linkname:
+**2.** To create a symbolic link in your home directory for the specified afs ppath, /afs/nd.edu/coursesp.16/cse/cse20189.01, use the ln command, with the -s option to create a symlink.  The form for this command is ln -s targetfile linkname:
 
 	$ ln -s /afs/nd.edu/coursesp.16/cse/cse20189.01 cse202189
 
