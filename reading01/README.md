@@ -41,7 +41,23 @@ This will return something like the following:
 
 This is the size of the directory, given in bytes.
 
-**5.**
-	
+**5.** ps ux brings up a list of processes, with the second column being the PID of that process. To kill that process, type kill followed by the PID.  In the case of ssh process given, with a PID of 25263, the follwing code will terminate the ssh student00 process.
+
+	$ kill 25263
+
+**6.** To kill all processes of a certain name, use the command killall followed by the name. For the urxvt processes, the following will kill all of that name:
+
+	$ killall urvxt
+
+**7.** To determine how long a program will take to execute, use the time command.  For more detailed information, use /usr/bin/time as the command.  The following will tell you how long a program named simulation will take to run.
+
+	$ usr/bin/time simulation
+
+**8.** To set your shell's editor to your desired editor, edit the .cshrc file with a text editor such as nano.  Add the following setenv lines to the file to set the default editor:
+
+	setenv VISUAL vim
+	setenv EDITOR vim
+
+Where I have set my default editor to vim.	
 
 	
