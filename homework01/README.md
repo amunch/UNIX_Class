@@ -25,3 +25,12 @@ Homework 01
 
 	$ cp -r /usr/share/pixmaps/* images
 
+*2.* Broken links are in red text and highlighted in black.  They cannot be accessed. To get a list of what links are broken, use the following command:
+
+	$ find . -xtype l
+
+*3.* Use the mv command to move the contents of a directory to a new directory of a different name:
+
+	$ mv images pixmaps
+
+
