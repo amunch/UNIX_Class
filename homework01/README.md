@@ -33,4 +33,20 @@ Homework 01
 
 	$ mv images pixmaps
 
+This operation took .01 s, as it simply renamed the folder.
+
+*4.* To move the pixmaps folder to the temp directory, use the following command similar to 3:
+	
+	$ mv pixmaps /tmp/amunch-pixmaps
+
+This operation took 6.3 seconds, as it actually had to copy all of the files to a different directory.
+
+*5.* To delete the pixmaps folder, use rm with the -r command to remove the entire directory as follows:
+
+	$ rm -r /tmp/amunch-pixmaps
+
+This took .03 seconds, as it was a simple delete operation.
+
+**Exercise 3**
+
 
