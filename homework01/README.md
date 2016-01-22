@@ -57,8 +57,51 @@ This took .03 seconds, as it was a simple delete operation.
 
 	$ ls -lt /afs/nd.edu/user37/ccl/software
 
-*3.* 
+*3.* To get the total number of files, use the find command to first list all and within subdirectories.  I then pipe it with wc to get the number of files. With wc, use the -l option to pass the number of lines (files).  Also, with find, pass -type f to only list the number of files, excluding the number of directories.
 
+	$ find /afs/nd.edu/user37/ccl/software/cctools/x86_64 -type f | wc -l
+
+This returns 1937 files.
+
+*4.* Yes, there are two weaver exectables, each for OSX and redhat Linux, I am assuming.  I used the find command piped with the grep command to search for only files that contain the phrase weaver.  With the find command, I passed the -executable flag to make sure it only returned executables, and the -type f option for only files and not directories.  The following is the code :
+
+	$ find /afs/nd.edu/user37/ccl/software/cctools/x86_64 -executable -type f | grep weaver
+
+Which returned:
+
+	/afs/nd.edu/user37/ccl/software/cctools/x86_64/redhat6/bin/weaver
+	/afs/nd.edu/user37/ccl/software/cctools/x86_64/osx-10.9/bin/weaver
+
+*5.* To view the size of the directories, use the du command.  Use the -h option to make it readable, and the --max-depth=1 option to only search the three folders. The following is the command:
+
+	$ du -h --max-depth=1 /afs/nd.edu/user37/ccl/software/cctools/x86_64
+
+Which returns:
+
+	77M	/afs/nd.edu/user37/ccl/software/cctools/x86_64/redhat5
+	72M	/afs/nd.edu/user37/ccl/software/cctools/x86_64/redhat6
+	23M	/afs/nd.edu/user37/ccl/software/cctools/x86_64/osx-10.9
+	171M	/afs/nd.edu/user37/ccl/software/cctools/x86_64
+
+Thus, the largest directory is the redhat5 one, with 77 megabytes.
+
+*6.* This was almost identical to 3, but within the redhat5 folder.  The following command was used, see 3 for an explanation:
+
+	$ find /afs/nd.edu/user37/ccl/software/cctools/x86_64/redhat5 -type f | wc -l
+
+This returned 768 files.
+
+*7.* To find the largest file, I pipe together several commands.  First, I use the find in the directory to look for files.  Next, I use xargs and ls to list the attributes of the files in a readable format.  I then sort by number, the size of the file, and then reverse this, so the highest will be first.  I then only print the head.  The following is the command:
+
+	$ find /afs/nd.edu/user37/ccl/software/cctools/x86_64/ -type f | xargs ls -lh | sort -nr | head
+
+Which returns the following as the largest file:
+
+	-rwxr-xr-x 1 btovar dip  989K Dec 17 08:51 /afs/nd.edu/user37/ccl/software/cctools/x86_64/redhat5/bin/chirp
+
+*8.* To find files that have not been modified in more than 30 days, use the -mtime option in find.  Use +30 after to show that you want all that have been modified 30 days ago or before then. The following command gives the count, which I found to be 1937.
+
+	$ find /afs/nd.edu/user37/ccl/software/cctools/x86_64/ -type f -mtime +30 | wc -l
 
 **Exercise 4**
 
