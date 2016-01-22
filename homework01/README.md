@@ -98,6 +98,13 @@ This indicates that the owner has read, write, and execution permission.  The gr
 
 This is because I am not an administrator, and I only have read and lookup priviledges, nothing else.
 
+*3.* To give the instructor access to a folder in my home directory, fs setacl is used.  The form of the command is 
+	
+	fs setacl <directory> <username> <permissions>
+
+I will give pbui read permissions to my ~/cse20211 folder, and use the 'read' shortcut to give these permissions. The following is the command:
+
+	$ fs setacl ~/cse20211 pbui read
 
 **Exercise 6**
 
