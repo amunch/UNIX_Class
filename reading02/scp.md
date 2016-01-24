@@ -9,7 +9,7 @@ Overview
 Examples
 --------
 
-- **Securely Transfer** filename1 to another host username2 at their specified host name:
+- **Securely Transfer** filename1 to another host username2 at their *specified host name*:
 
         $ scp username1@source_host:directory1/filename1 username2@destination_host:directory2/filename2
 

@@ -9,7 +9,7 @@ Overview
 Examples
 --------
 
-- **List** ports available on google.com with their *status and service type:
+- **List** ports available on google.com with their *status and service type*:
 
         $ nmap google.com
 
