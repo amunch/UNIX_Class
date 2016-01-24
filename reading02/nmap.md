@@ -4,7 +4,7 @@ TLDR - nmap
 Overview
 --------
 
-[nmap] is a command which lists all of the open ports for a domain.  The nmap command returns a list which includes the name of the port, its status, and the ervice associated with it.  For example, nmap google.com returns services http amd https as open ports.
+[nmap] is a command which lists all of the open ports for a domain.  The nmap command returns a list which includes the name of the port, its status, and the service associated with it.  For example, nmap google.com returns services http amd https as open ports.
 
 Examples
 --------
