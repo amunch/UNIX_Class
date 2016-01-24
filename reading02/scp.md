@@ -13,6 +13,11 @@ Examples
 
         $ scp username1@source_host:directory1/filename1 username2@destination_host:directory2/filename2
 
+- **Securely Transfer** as above, but use a different cipher for encryption.  The blowfish cipher used in the following example increases the speed of the transfer as it encrypts quicker:
+
+	$ scp -c blowfish  username1@source_host:directory1/filename1 username2@destination_host:directory2/filename2
+	
+
 Resources
 ---------
 

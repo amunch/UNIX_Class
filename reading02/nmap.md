@@ -13,6 +13,10 @@ Examples
 
         $ nmap google.com
 
+- **List** available ports, along with the -A option to tell you the version and OS of the mapped domain:
+
+	$ nmap -A reddit.com
+
 Resources
 ---------
 

@@ -13,6 +13,10 @@ Examples
 
         $ ping google.com
 
+- **Ping** reddit.com, along with a *timestamp* and *audible sound*:
+
+	$ ping -a -D reddit.com
+
 Resources
 ---------
 
