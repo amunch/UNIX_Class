@@ -15,7 +15,7 @@ Examples
 
 - **Download** a file from a *domain*.  Along with everything above, use the -t command to keep trying to download the file.  Good for use if ND-Secure is spotty as always. I specified to try 100 times:
 
-	$ wget -t 100 -o image.png www.example.com/image.png
+		$ wget -t 100 -o image.png www.example.com/image.png
 
 Resources
 ---------
