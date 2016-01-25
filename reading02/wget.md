@@ -11,7 +11,11 @@ Examples
 
 - **Download** a file from a *domain*. The -O option allows the user to specify where to download the file:
 
-        $ $ wget -O image.png www.example.com/image.png
+        $ wget -O image.png www.example.com/image.png
+
+- **Download** a file from a *domain*.  Along with everything above, use the -t command to keep trying to download the file.  Good for use if ND-Secure is spotty as always. I specified to try 100 times:
+
+		$ wget -t 100 -o image.png www.example.com/image.png
 
 Resources
 ---------

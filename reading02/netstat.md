@@ -13,6 +13,14 @@ Examples
 
         $ netstat
 
+- **List** the *connections*, but also display the file name of the process, rather than the PID.  Note, this may increase the time it takes for netstat to execute:
+
+		$ netstat -b
+
+- **List** the *connections*, along with detailed statistics for each protocol:
+
+		$ netstat -s
+
 Resources
 ---------
 
