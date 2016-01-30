@@ -26,7 +26,44 @@ Homework 02
 	# Create workspace on target machine.  In this case, I ssh'ed into the remote106 machine and ran the same command as in the first part.
 	$ mkdir /tmp/${USER}-workspace
 
+*2.* The total disk usage is found running the du -h command, to list the size of the directory in a human readable format, of course logged onto the source machine:
 
+	$ du -h /tmp/${USER}-workspace
+
+which gives the following ouput:
+
+	11M	/tmp/amunch-workspace
+
+Indicating that the size is 11MB, which is not suprising at all because hard links are basically copies of the source file.  There is some overhead but this is close enough.
+
+*3.* Using the du command for the size of the directory:
+
+	$ du -h /tmp/${USER}-workspace
+
+I get the following output:
+
+	11M	/tmp/amunch-workspace
+
+This is expected to be the same as 2, as scp and sftp will just overwrite files of the same name, and rsync does not copy files that are already there.
+
+*4.* 
+	# Transfer data files using scp.  Use the * to indicate that I want to transfer all files.
+	$ scp /tmp/${USER}-workspace/* amunch@remote106.helios.nd.edu:/tmp/${USER}-workspace
+	# I was then prompted to enter the passwords for both and then a progress bar was shown for each file, indicating their progress.
+
+	# Transfer data files using sftp.  First I need to create a file, called in, on the target computer with the follwoing line:
+	$ get /tmp/amunch-workspace/* /tmp/amunch-workspace
+	# Next, I need to go to the target machine and type the following as the command:
+	$ sftp amunch@remote105.helios.nd.edu < in
+	# This will connect to the source machine, and use the text in the file in to run the desired command in a single line(excluding passwords).
+
+	# Transfer data files using rsync.  rsync uses the same syntax as scp, but does not by default output anything.  I added --stats to get statistics on the transfer:
+	$ rsync --stats /tmp/${USER}-workspace/* amunch@remote106.helios.nd.edu:/tmp/${USER}-workspace
+	# The output for rsync is a little different.  It tells how many bytes were sent and what files were matched, as rsync does not send data that is already there.
+
+*5.* scp and sftp transfer the files every time it is called, regardless of what is in the target folder already.  When rsync is used multiple times, it is only transferred once, as it matches what is already in the target folder to what is sending and does not send the duplicates.  This saves bandwidth and time for large file transfers.
+
+*6.* I prefer rsync, with the --stats option of course.  I feel that not transferring every single file every time is immensely more useful when it comes to large projects and file transfers.
 
 **Activity 2**
 
