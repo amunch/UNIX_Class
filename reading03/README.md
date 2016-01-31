@@ -1,5 +1,6 @@
 Reading 03
 ==========
+**PLEASE NOTE** -static does not work on the Mac I am working on due to OSX, but works on the student machines.  Thus the hello-static executable is missing, but the command works.
 
 *1.* To view all the text for a command, we first need to know where that command is located.  A quick whereis ls tells us that ls is located in /bin/ls, and I will use the strings command to view the text:
 

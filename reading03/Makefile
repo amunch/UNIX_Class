@@ -1,7 +1,10 @@
-all: hello-dynamic hello-debug hello-profile
+all: hello-dynamic hello-static hello-debug hello-profile
 
 hello-dynamic:
 	gcc hello.c -o hello-dynamic
+
+hello-static:
+	gcc -static hello.c -o hello-static
 
 hello-debug:
 	gcc -g hello.c -o hello-debug
