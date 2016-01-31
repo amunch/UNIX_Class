@@ -15,7 +15,7 @@ Examples
 
 - **List** all of the *system calls*, but this time count the time and the number of errors for each system call.  This is a very nice way to see all of the calls and time in a very organized manner.  Always use this.
 
-	$ strace -c a.out
+		$ strace -c a.out
 
 Resources
 ---------
