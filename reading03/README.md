@@ -13,4 +13,21 @@ Reading 03
 
 	$ strace /bin/ls
 
-*4.* 
+*4.* To debug the hello-debug program, run the gdb command.  The compiling of the program should have include the -g flag.  Once the gdb program is entered, hit run and gdb will run the program and help to debug:
+
+	$ gdb hello-debug
+	(gdb) run
+
+*5.* Valgrind is the best tool to check for memory leaks.  Valgrind will return a summary of memory usage and any possible leaks, as well as errors.  To use this command, simply type valgrind and then your executable:
+
+	$ valgrind hello-dynamic
+
+*6.* To find any bottlenecks in the program, first compile with the makefile and then run the program:
+	
+	$ hello-profile
+
+This creates a file called gmon.out, which allows us to find these bottlenecks.  Next, we use the gprof command to analyze the running of hello-profile:
+
+	$ gprof hello-profile
+
+
