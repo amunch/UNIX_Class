@@ -15,11 +15,11 @@ Examples
 
 - **Make** the target hello-dynamic, as specified in the *Makefile*.  This likely will run a compilation command and create an executable.
 
-	$ make hello-dynamic
+		$ make hello-dynamic
 
 - **Run** the target clean, which customarily cleans the executables created by the Makefile.
 
-	$ make clean
+		$ make clean
 
 Resources
 ---------
