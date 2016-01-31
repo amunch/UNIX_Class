@@ -15,7 +15,7 @@ Examples
 
 - **List** the shared libaries that are required by a.out, but this time incude more details such as the versions.
 
-	$ ldd -v a.out
+		$ ldd -v a.out
 
 Resources
 ---------
