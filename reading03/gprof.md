@@ -12,11 +12,11 @@ Examples
 - **Create** the required gmon.out file for a program called hello.c.  Compile the program with the -pg flag and run the program.
 
         $ gcc -pg hello.c
-	$ a.out
+		$ a.out
 
 - **List times** taken for each *routine* in the program using gprof. A gmon.out file must have been created or this will throw an error.
 
-	$ gprof a.out
+		$ gprof a.out
 
 Resources
 ---------
