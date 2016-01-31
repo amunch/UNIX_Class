@@ -15,7 +15,7 @@ Examples
 
 - **List** the strings in a file called hello.c. Use the -1 option such that the minimum length for a string to be printed is 1.
 
-	$ strings -1 hello.c
+		$ strings -1 hello.c
 
 Resources
 ---------
