@@ -4,9 +4,23 @@ Homework 03
 *Task 2 Questions*  
 
 **1.** 
+
 **a.** libgcd.so is larger than libgcd.a. This is because a shared library is executable, whereas a static library is compiled and linked directly within the program.  Shared libraries are loaded at application time to the program using these libraries.
+
 **b.** gcd-static is much larger than its dynamically linked brother as it contains all of the libraries within it.  gcd-dynamic merely links to the libraries, and thus is much smaller.
-**2.** 
+
+**2.** gcd-static does not depend on libraries at runtime, as they are baked into the binary of the executable.  gcd-dynamic depends on linux-vdso.so.1, libgcd.so, libc.so.6, and /lib64/ld-linux-x86-64.so.2.  To find this information, I used the following command:
+	
+	$ ldd ./gcd_dynamic
+
+And when run on static, it returns nothing as static has no dependent libraries.
+
+**3.** It does not work, as does not know where the shared library libgcd.so is.  This was also noted when running ldd, as it returned "not found" for that library.  To allow gcd-dynamic to work, set the environmental variable LD_LIBARARY_PATH to ., which was successful in getting gcd-dynamic to work:
+
+	setenv LD_LIBRARY_PATH .
+
+**4.** The advantage to staticly linked libraries are that the libraries are all in the binary, there is no need to make sure that running on another machine has the necessary libraries.  The advantage to dynamically linked libraries is that the executables are smaller.  
+	If I were creating an application, I would by default produce dynamically linked libraries as the size benefits are substantial.  In the case I am using a non-standard library, sure I would statically link the library, but I do not think that this usage case is prevalent enough to default to static linking every time. 
 
 *Activity 2*
 *Task 3: Questions*
