@@ -31,7 +31,7 @@ Reading 04
 
 *8.* To paste the contents of a file to the online pastebin sprung, pipe the cat command with curl.
 
-	$ cat {file} | curl -F 'sprunge=<-" http://sprunge.us
+	$ cat {file} | curl -F 'sprunge=<-' http://sprunge.us
 
 Which will return a link that can be used to access this pastebin and share it with others.
 
