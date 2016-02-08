@@ -20,7 +20,7 @@ Examples
 Resources
 ---------
 
-- [man7](https://www.sudo.ws/man/sudo.man.html)
+- [sudo.ws](https://www.sudo.ws/man/sudo.man.html)
 
 [sudo]: https://www.sudo.ws/man/sudo.man.html
 

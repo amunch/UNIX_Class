@@ -20,7 +20,7 @@ Examples
 Resources
 ---------
 
-- [man7](http://linux.die.net/man/1/unzip)
+- [linux.die.net](http://linux.die.net/man/1/unzip)
 
 [unzip]: http://linux.die.net/man/1/unzip
 
