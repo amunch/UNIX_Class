@@ -1,4 +1,6 @@
 #!/bin/sh
+#Removes comments, blank lines, and trailing whitespace.
+#By: Andy Munch
 
 DELIM="#"
 STRIP='1'
