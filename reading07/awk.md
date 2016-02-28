@@ -4,7 +4,7 @@ TLDR - awk
 Overview
 --------
 
-	[awk] is a language that scans and processes an input, allowing the user to perform many tasks including counting the unique instances of a word or what word occurs the most.
+[awk] is a language that scans and processes an input, allowing the user to perform many tasks including counting the unique instances of a word or what word occurs the most.
 
 
 Format:
