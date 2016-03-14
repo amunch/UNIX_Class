@@ -1,0 +1,41 @@
+\documentclass[letterpaper]{article}
+
+\title{Reading08: Document Tools}
+\date{}
+\author{Andrew Munch}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\maketitle
+
+%--------------------------------------
+
+\section*{Overview}
+
+For this experiment, I created \verb|three| scripts:
+
+   1. \verb|roll_dice.sh:| This sript simulates random dice rolls using the shuf command.
+   2. \verb|experiment.sh:| This script uses \verb|roll_dice.sh| to simulate 1000 dice rolls and then output that data in tab-separated format into \verb|results.dat.|
+   3. \verb|histogram.plt:| This script uses the gnuplot program to create a histogram of the data in \verb|results.dat.|
+
+%--------------------------------------
+
+\section*{Rolling Dice}
+
+First, I created a script \verb|roll_dice.sh| that uses the shuf command to simulate random dice rolls.  The user can specify how many {\it sides} they would like to choose from and the number of {\it rolls} they would like to have.
+
+\begin{verbatim}
+$ ./roll_dice.sh -h
+usage: roll_dice.sh [-r ROLLS -s sides]
+
+-r ROLLS Number of rolls of die (default: 10)
+-s SIDES Number of sides on die (default: 6)
+\end{verbatim}
+
+%---------------------------------------
+
+\section*{Experiment}
