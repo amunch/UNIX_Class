@@ -1,10 +1,10 @@
-\documentclass[letterpaper]{article}
+\documentclass{article}
 
 \title{Reading08: Document Tools}
 \date{}
 \author{Andrew Munch}
 
-\usepackage{graphicx}
+\usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage[margin=1in]{geometry}
 
@@ -49,19 +49,19 @@ Second, I created a script called \verb|experiment.sh| wich calls \verb|roll_dic
 Table 1 shows the results of running the experiment shell script:
 
 \begin{table}[h!]
-\centering
-\begin{tablular}{r|1||c}
-Side & Counts\\
-\hline
-1 & 162\\
-2 & 183\\
-3 & 160\\
-4 & 172\\
-5 & 157\\
-6 & 166\\
-\end{tabular}
-\caption{Dice Rolling Results}
-\label{tb1:rolls}
+	\centering
+	\begin{tabular}{r|l||c}
+	Side & Counts\\
+	\hline
+	1 & 162\\
+	2 & 183\\
+	3 & 160\\
+	4 & 172\\
+	5 & 157\\
+	6 & 166\\
+	\end{tabular}
+	\caption{Dice Rolling Results}
+	\label{tbl:rolls}
 \end{table}
 
 Figure 1 is a histogram plot of these results:
