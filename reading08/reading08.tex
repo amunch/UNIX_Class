@@ -39,3 +39,36 @@ usage: roll_dice.sh [-r ROLLS -s sides]
 %---------------------------------------
 
 \section*{Experiment}
+
+Second, I created a script called \verb|experiment.sh| wich calls \verb|roll_dice.sh| with 1000 rolls.  This output is filtered using awk to create a list of tab-separated values that is then sent to a file \verb|results.dat|
+
+%---------------------------------------
+
+\section*{Results}
+
+Table 1 shows the results of running the experiment shell script:
+
+\begin{table}[h!]
+\centering
+\begin{tablular}{r|1||c}
+Side & Counts\\
+\hline
+1 & 162\\
+2 & 183\\
+3 & 160\\
+4 & 172\\
+5 & 157\\
+6 & 166\\
+\end{tabular}
+\caption{Dice Rolling Results}
+\label{tb1:rolls}
+\end{table}
+
+Figure 1 is a histogram plot of these results:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5in]{results.png}
+\caption{Dice Rolling Results}
+\label{fig:rolls}
+\end{figure}
