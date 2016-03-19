@@ -30,8 +30,10 @@ The following is the script to create a tab separated list returning the number 
 
 for year in 2013 2014 2015 2016 2017 2018
 do
-        awk -v year=$year 'BEGIN {FS = ","} {gender[$(2*year - 4025)]++} END 
-        {print year"\t"gender["M"]"\t"gender["F"]}' demographics.csv
+        awk -v year=$year 'BEGIN {FS = ","} 
+        {gender[$(2*year - 4025)]++} END 
+        {print year"\t"gender["M"]"\t"gender["F"]}' 
+        demographics.csv
 done
 \end{verbatim}
 
@@ -42,9 +44,12 @@ Next is the script to return a tab separated list of the number of people of eac
 
 for year in 2013 2014 2015 2016 2017 2018
 do
-        awk -v year=$year 'BEGIN {FS = ","} {ethnicity[$(2*year - 4024)]++} END 
-        {print year"\t"ethnicity["C"]"\t"ethnicity["O"]"\t"ethnicity["S"]"\t"
-        ethnicity["B"]"\t"ethnicity["N"]"\t"ethnicity["T"]"\t"ethnicity["U"]}' 
+        awk -v year=$year 'BEGIN {FS = ","} 
+        {ethnicity[$(2*year - 4024)]++} END 
+        {print year"\t"ethnicity["C"]"\t"
+        ethnicity["O"]"\t"ethnicity["S"]"\t"
+        ethnicity["B"]"\t"ethnicity["N"]"\t"
+        ethnicity["T"]"\t"ethnicity["U"]}' 
         demographics.csv
 done
 \end{verbatim}
@@ -84,3 +89,6 @@ To me, a department and a University should not choose students of non-majority 
 I do believe that the CSE department is a welcoming and supportive environment, and that the disparity in gender and ethnicity is a reflection of the workplace as a whole. 
 
 I have been fortunate not to experience many challenges in this program other than being challenging academically, which is a good thing.  Providing tutoring and academic assistance is very helpful and should be increased by the department as the CSE program gains more students.
+
+\end{document}
+
