@@ -27,29 +27,52 @@ except getopt.GetoptError as e:
 
 for o, a in opts:
 	if o == '-c':
-		CHARACTER
+		CHARACTER = True
+	elif o == '-l':
+		NEWLINE = True
+	elif o == '-w':
+		WORD = True
 	else:
 		usage(1)
 
+EXPLICIT = True
+
 if len(args) == 0:
 	args.append('-')
+	EXPLICIT = False
 
+ARGUMENT = ''
 
 for path in args:
 	if path == '-':
 		stream = sys.stdin
+		ARGUMENT = path
 	else:
 		stream = open(path)
+		ARGUMENT = path
 
-unique = {}
-count = 0;
+SUM = 0
 
-for line in stream:
-	if count == int(NUM):
-		sys.exit()
-	count += 1
-	line = line.rstrip()
-	print line
-	
+if CHARACTER == True:
+	for char in stream:
+		SUM += len(char)
+	if ARGUMENT == '' or EXPLICIT == False:
+		print SUM
+	else:
+		print SUM, (ARGUMENT)
+elif NEWLINE == True:
+	for line in stream:
+		SUM += 1
+	if ARGUMENT == '' or EXPLICIT == False:
+                print SUM
+        else:
+                print SUM, (ARGUMENT)
+elif WORD == True:
+	for line in stream:
+		SUM += len(line.split())
+	if ARGUMENT == '' or EXPLICIT == False:
+                print SUM
+        else:
+                print SUM, (ARGUMENT)
 
 stream.close()
