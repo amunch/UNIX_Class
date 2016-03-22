@@ -35,6 +35,10 @@ for o, a in opts:
 	else:
 		usage(1)
 
+if (CHARACTER & NEWLINE) or (CHARACTER & WORD) or (NEWLINE & WORD):
+	print "Too many flags."
+	sys.exit()
+
 EXPLICIT = True
 
 if len(args) == 0:

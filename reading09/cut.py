@@ -1,5 +1,5 @@
 #!/usr/bin/env python2.7
-#Implementation of the head command using Python
+#Implementation of the cut command using Python
 #By: Andy Munch 
 
 import getopt
@@ -9,22 +9,26 @@ import string
 
 DELIM = '\t'
 
-
 def usage(status=0):
-	print '''usage: head.py [-n NUM] files ...
+	print '''usage: wc.py [-d DELIM -f] files ...
 
-	-n NUM	print the first NUM lines instead of the first 10'''.format(os.path.basename(sys.argv[0]))
+	-d DELIM  use DELIM instead of TAB for field delimiter
+	-f FIELDS select only these FIELDS'''.format(os.path.basename(sys.argv[0]))
 	sys.exit(status)
 
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "n:h")
+	opts, args = getopt.getopt(sys.argv[1:], "d:f:")
 except getopt.GetoptError as e:
 	print e
 	usage(1)
 
+FIELDS = []
+
 for o, a in opts:
-	if o == '-n':
-		NUM = a
+	if o == '-d':
+		DELIM = a
+	elif o == '-f':
+		FIELDS = a.split(',')
 	else:
 		usage(1)
 
@@ -38,15 +42,14 @@ for path in args:
 	else:
 		stream = open(path)
 
-unique = {}
-count = 0;
+array = []
 
 for line in stream:
-	if count == int(NUM):
-		sys.exit()
-	count += 1
-	line = line.rstrip()
-	print line
-	
+	array = line.split(DELIM)
+	for num in FIELDS:
+		sys.stdout.write(array[int(num) - 1].rstrip())
+		if int(num) is not int(FIELDS[-1]):
+			sys.stdout.write(':')
+	sys.stdout.write('\n')
 
 stream.close()
