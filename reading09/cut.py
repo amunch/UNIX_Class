@@ -47,13 +47,16 @@ for path in args:
 		stream = open(path)
 
 array = []
+count = 0
 
 for line in stream:
 	array = line.split(DELIM)
 	for num in FIELDS:
+		count += 1
 		sys.stdout.write(array[int(num) - 1].rstrip())
-		if int(num) is not int(FIELDS[-1]):
+		if count is not len(FIELDS):
 			sys.stdout.write(':')
+	count = 0
 	sys.stdout.write('\n')
 
 stream.close()
