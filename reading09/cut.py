@@ -32,6 +32,10 @@ for o, a in opts:
 	else:
 		usage(1)
 
+if len(FIELDS) == 0:
+	print "Please specify a field."
+	sys.exit()
+
 if len(args) == 0:
 	args.append('-')
 
