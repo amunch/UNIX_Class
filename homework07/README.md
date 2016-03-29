@@ -20,4 +20,9 @@ I then looped through all of the elements using a for loop, as the list was now 
 
 *find.py*
 
-**1)** 
+**1)** Parsing the command line options was done by first getting a list using the sys.argv command, taking the third argument and on.  I then implemented a count that will be at the current argument.  While this count is less than the length of the argument list, I ran a loop that set all of the values based on user inputs.  If the specific argument required a value that is the next value in the list, I incremented the count and then set the corresponding value to that element.  After each loop, I incremented count to go to the next argument.  If any arguments were not in the list, I showed the usage screen and exitted.
+
+**2)** To walk the directory tree, I created a walk function.  This function attempts to return a 3-tuple of the root, files, and directories using the os.walk command. This command sets topdown to be true and followlinks to be true, so that it will start from the specified path and work its way down, and also follow all symbolic links.  If there was an error, it prints the error and exits.  If this successfully returned the 3-tuple, which is looped through and includes files or directories based on if it passes the include function.
+
+**3)** The main method of determining whether to include a object's path was the include function.First, if the executable option was specified, I called an is_exe function to determine if the file is exectuable.  This was done by using the os.path.exists command on the path and os.access with the os.X_OK mode.  If either of these was false, inclue returned false and this path was not included.  The same thing was done for READABLE and WRITABLE, except that the mode os.R_OK was used for READABLE and os.W_OK was used for WRITABLE.
+	If the empty option was set to true, the function determined if the path was a directory, a file, or a symlink.  Symlinks were always false considered empty.

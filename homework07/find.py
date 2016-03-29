@@ -11,9 +11,9 @@ from stat import *
 
 #Global Variables
 
-PROGRAM_NAME = os.path.basename(sys.argv[0])
+PROGRAM_NAME = os.path.basename(sys.argv[0]) #Store the name of the program.
 
-DIRECTORY = sys.argv[1]
+DIRECTORY = sys.argv[1] #Store the directory to be searched (first argument after name)
 TYPE = ''
 EXECUTABLE = False
 READABLE = False
@@ -55,13 +55,14 @@ Options:
     	-gid   n        File's numeric group ID is n'''
 	.format(PROGRAM_NAME), exit_code)
 
-def walk(path):
+def walk(path): #Try to recursively search the directory, and exit if there is an error.
 	try:
 		return os.walk(path, topdown = True, followlinks = True)
 	except OSError as e:	
 		print >>sys.stderr, 'Unable to open file{}:{}'.format(path, e)
 		sys.exit(1)
 
+#Functions to determine if executable, readable, and writable.
 def is_exe(path):
 	return os.path.exists(path) and os.access(path, os.X_OK)
 
@@ -71,17 +72,18 @@ def is_read(path):
 def is_write(path):
 	return os.path.exists(path) and os.access(path, os.W_OK)
 
+#Function to determine if the paths hould be included.
 def include(path):
-	if EXECUTABLE:
+	if EXECUTABLE: #If the file is executable.
 		if is_exe(path) == False:
 			return False
-	if READABLE:
+	if READABLE: #If the file is readable.
 		if is_read(path) == False:
 			return False
-	if WRITABLE:
+	if WRITABLE: #If the file is writable.
 		if is_write(path) == False:
 			return False
-	if EMPTY:
+	if EMPTY: #Tell if the directory is empty.
 		if os.path.isdir(path):
 			try:
 				if len(os.listdir(path)) != 0:
@@ -91,29 +93,33 @@ def include(path):
 		elif os.path.isfile(path) and os.stat(path).st_size != 0:
 			return False
 		elif os.path.islink(path):
-			return False	
-	if NAME:
+			try:
+				os.stat(path)
+				return False
+			except OSERROR as e:
+				return True
+	if NAME: #Tell if the name matches a string in the path.
 		if not fnmatch.fnmatch(os.path.basename(path), NAME):
 			return False
-	if PATH:
+	if PATH: #Match the path to the specified path name.
 		if not fnmatch.fnmatch(path, PATH):
 			return False
-	if REGEX:
+	if REGEX: #Search for this regular expression
 		if not re.search(REGEX, path):
 			return False
-	if PERM:
+	if PERM: #Permission are exactly the mode specified.
 		try:
 			if oct(os.stat(path)[ST_MODE])[-3:] != PERM:	
 				return False
 		except OSError as e:
 			return False
-	if NEWER:
+	if NEWER: #File was modified more recently than specified file.
         	try:
             		if os.stat(path).st_mtime <= os.stat(NEWER).st_mtime:
                 		return False
 		except OSError as e:
 				return False
-	if UID:
+	if UID: #Files numeric user ID is as specified.
 		if os.path.islink(path):
 			return True
 		try:
@@ -121,7 +127,7 @@ def include(path):
 				return False
 		except OSError as e:
 			return False
-	if GID:
+	if GID: #File's group id is as specified.
 		try:
 			if os.stat(path).st_gid != int(GID):
 				return False
@@ -131,8 +137,8 @@ def include(path):
 					return True
 	return True
 
-ARG = sys.argv[2:]
-COUNT = 0
+ARG = sys.argv[2:] #Arguments are the third in the list and on.
+COUNT = 0 #Incremented twice with options that need second argument.
 
 while COUNT < len(ARG):
 	if ARG[COUNT] == '-type':
@@ -171,11 +177,11 @@ while COUNT < len(ARG):
 		usage(1)
 	COUNT += 1
 
-if TYPE == '' or TYPE == 'd':
+if TYPE == '' or TYPE == 'd': #Include directory if includable and not of type f.
 	if include(DIRECTORY):
 		print DIRECTORY
 
-for root, dirs, files in walk(DIRECTORY):
+for root, dirs, files in walk(DIRECTORY): #Walk through the directories and include if passes test.
 	if TYPE == 'f':
 		for f in files:
 			if os.path.isfile(root+'/'+f) and include(root+'/'+f):
@@ -184,7 +190,7 @@ for root, dirs, files in walk(DIRECTORY):
                 for d in dirs:
                         if os.path.isdir(root+'/'+d) and include(root+'/'+d):
 				print root+'/'+d
-	else:
+	else: #If type is not specified, do both.
 		for f in files:	
 			if include(root+'/'+f):
 				print root+'/'+f
