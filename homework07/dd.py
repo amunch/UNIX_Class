@@ -15,13 +15,13 @@ BS=512
 SEEK=0
 SKIP=0
 
-PROGRAM_NAME = os.path.basename(sys.argv[0])
+PROGRAM_NAME = os.path.basename(sys.argv[0]) #Program name for use in error.
 
-def error(message, exit_code=1):
+def error(message, exit_code=1): #Error sequence.
 	print >>sys.stderr, message	
 	sys.exit(exit_code)
 
-def usage(exit_code=0):
+def usage(exit_code=0): #Usage description.  Used for invalid flags for -h.
 	error('''Usage: {} options...
 
 Options:
@@ -37,33 +37,32 @@ Options:
 	.format(PROGRAM_NAME), exit_code)
 
 
-def open_fd(path, mode):
+def open_fd(path, mode): #Try to open the file.
     try:
         return os.open(path, mode)
     except OSError as e:
-        print >>sys.stderr, 'Could not open file {}: {}'.format(path, e)
-        sys.exit(1)
+        error('Could not open file {}: {}'.format(path, e))  
 
-def read_fd(fd, n):
+def read_fd(fd, n): #Try to read the file.
     try:
         return os.read(fd, n)
     except OSError as e:
         error('Could not read {} bytes from FD {}: {}'.format(n, fd, e))
 
-def write_fd(fd, data):
+def write_fd(fd, data): #try to write to the file.
     try:
         return os.write(fd, data)
     except OSError as e:
         error('Could not write {} bytes from FD {}: {}'.format(len(data), fd, e))
 
-ARG = sys.argv[1:]
+ARG = sys.argv[1:] #Get a list of arguments.
 
 split_list = []
 
-for argument in ARG:
+for argument in ARG: #Split based on equals sign.
 	split_list.append(argument.split('='))
 
-for element in split_list:
+for element in split_list: #Set variables as specified by the user.
 	if element[0] == 'if':
 		IF = element[1]		
 	elif element[0] == 'of':
@@ -80,28 +79,28 @@ for element in split_list:
 		usage(1)
 		error('Invalid command line argument', 1)
 	
-if IF is not 0:
+if IF is not 0: #Open the file as read only, do not if user wants stdin
 	fd = open_fd(IF, os.O_RDONLY)
 else:
 	fd = 0
 
-if OF is not 1:
+if OF is not 1: #Output is by default stdout, unless file is specified.
 	target = open_fd(OF, os.O_WRONLY|os.O_CREAT)
 else:	
 	target = 1
 
 NUM = 0
-
-if IF is not 0:
+#You cannot lseek on stdin or stdout, so only consider cases of 
+if IF is not 0: #Specifies how many blocks to skip in the input file
 	os.lseek(fd, int(SKIP)*int(BS), 0)
-if OF is not 1:
+if OF is not 1: #Specifies how many blocks to skip in the output file.
 	os.lseek(target, int(SEEK)*int(BS), 0) 
 
 data = read_fd(fd, int(BS))
-while data and NUM < int(COUNT):
+while data and NUM < int(COUNT): #Count handles how many blocks to write.
 	write_fd(target, data)
-	data = read_fd(fd, int(BS))
+	data = read_fd(fd, int(BS)) #Read the specifies blocksizes.
 	NUM += 1
 
 os.close(fd)
-os.close(target)
+os.close(target) #Close the file objects.
