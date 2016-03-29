@@ -94,11 +94,11 @@ def include(path):
 			return False
 		elif os.path.islink(path):
 			try:
-				os.stat(path)
+				if os.stat(path):
+					return True
+			except OSError as e:
 				return False
-			except OSERROR as e:
-				return True
-	if NAME: #Tell if the name matches a string in the path.
+	if NAME: #Tell if the name matches a string in the basename.
 		if not fnmatch.fnmatch(os.path.basename(path), NAME):
 			return False
 	if PATH: #Match the path to the specified path name.
@@ -120,13 +120,13 @@ def include(path):
 		except OSError as e:
 				return False
 	if UID: #Files numeric user ID is as specified.
-		if os.path.islink(path):
-			return True
 		try:
 			if os.stat(path).st_uid != int(UID):
 				return False
 		except OSError as e:
-			return False
+			if os.path.islink(path):
+				if os.lstat(path).st_uid == int(UID):
+					return True
 	if GID: #File's group id is as specified.
 		try:
 			if os.stat(path).st_gid != int(GID):
