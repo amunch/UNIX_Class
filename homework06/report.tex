@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\title{Diversity in Computer Science}
+\author{Andy Munch \\ email \href{mailto:amunch@nd.edu}{amunch@nd.edu}}
+\date{March 18, 2016}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+For this homework assignment, I analyzed demographic data of \textbf{Computer Science} majors at the University of Notre Dame.  First, I determined what the overall trend in gender balance is for Computer Science majors, and noticed that the relative number of females has remained fairly constant.  The fact remains that the relative number of female Computer Science majors compared to males hovers around 30-40 percent, quite a big disparity.  In addition, I analyzed the ethnicities of the computer science majors.  My takeaway from this is that Computer Science majors are largely Caucasian, and this percentage has trended upwards.
+
+The main takeaway from this homework is the Computer Science at Notre Dame is largely \textbf{male and Caucasian}, and the percentage of this being the case is only \textit{increasing}.  The method for determining this was analyzing a CSV file containing the demographic data using shell scripts and gnuplot.  This allowed me to analyze trends and create plots demonstrating these.
+
+\section{Methodology}
+
+\textbf{Awk} was the main program I used to analyze this.  I created 2 shell scripts that looped through the years provided, and using an associative array found the number of students who were male or female and what their ethnicity is.  
+
+The following is the script to create a tab separated list returning the number of students of each gender:
+
+\begin{verbatim}
+#!/bin/sh
+
+for year in 2013 2014 2015 2016 2017 2018
+do
+        awk -v year=$year 'BEGIN {FS = ","} 
+        {gender[$(2*year - 4025)]++} END 
+        {print year"\t"gender["M"]"\t"gender["F"]}' 
+        demographics.csv
+done
+\end{verbatim}
+
+Next is the script to return a tab separated list of the number of people of each ethnicity:
+
+\begin{verbatim}
+#!/bin/sh
+
+for year in 2013 2014 2015 2016 2017 2018
+do
+        awk -v year=$year 'BEGIN {FS = ","} 
+        {ethnicity[$(2*year - 4024)]++} END 
+        {print year"\t"ethnicity["C"]"\t"
+        ethnicity["O"]"\t"ethnicity["S"]"\t"
+        ethnicity["B"]"\t"ethnicity["N"]"\t"
+        ethnicity["T"]"\t"ethnicity["U"]}' 
+        demographics.csv
+done
+\end{verbatim}
+
+Both of these scripts return a tab-separated list that gives the year and then the number of each field in the order specified in the assignment.  Unfortunately, I could not figure out how to default to 0 in the .tsv files, and ran out of time to finish that part.  Otherwise, I did not have any other major problems.
+
+\section{Analysis}
+
+The following is a bar graph comparing the number of majors of each gender over six years.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[height=3in]{gender.png}
+\caption{Gender}
+\label{fig:gender}
+\end{figure}
+
+The following is a line graph comparing the number of majors of each ethnicity over six years.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[height=3in]{ethnicity.png}
+\caption{Ethnicity Trends}
+\label{fig:ethnicity}
+\end{figure}
+
+The x-axis is the year and the y-axis is the number of students.
+
+Overall, it is very clear that Computer Scientists at Notre Dame are \textbf{overwhelmingly Caucasian and male}. The increase in Caucasians are far outpaced the increase in other ethnicities.  The increase in females has been, in a relative sense, kept up with males, but the disparity is high.
+
+\section{Discussion}
+
+Personally, my experiences with gender and diversity have been unremarkable, as I represent the most numerous in both of those categories.  However, the issue of gender and ethnic diversity is important to me, and I feel that a department that is inclusive and diverse is important.  
+
+To me, a department and a University should not choose students of non-majority ethnicities over Caucasians simply based on their ethnicity.  I feel that a University should choose without knowing these facts, as they are irrelevant to how a person will perform at that University.  However, I do beleive that people of different ethnicities do have a more difficult time succeeding in certain circumstances, and that a University should both assist those people in these situations through all steps of life and consider these facts in deciding to accept an applicant to their program. 
+
+I do believe that the CSE department is a welcoming and supportive environment, and that the disparity in gender and ethnicity is a reflection of the workplace as a whole. 
+
+I have been fortunate not to experience many challenges in this program other than being challenging academically, which is a good thing.  Providing tutoring and academic assistance is very helpful and should be increased by the department as the CSE program gains more students.
+
+\end{document}
+
