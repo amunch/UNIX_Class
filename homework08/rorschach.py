@@ -76,7 +76,7 @@ for o, a in opts:
 		NUM = NUM + 2
 	elif o == '-r':
 		RULES = a
-		NUM = NUM + 1
+		NUM = NUM + 2
 	elif o == '-v':
 		VERBOSE=True
 		NUM = NUM + 1
@@ -84,8 +84,10 @@ for o, a in opts:
 		usage(1)
  
 if len(args) != 0:
-	DIRECTORIES = sys.argv[num:]
- 
+	DIRECTORIES = sys.argv[NUM:]
+
+print DIRECTORIES
+
 #main
  
 INFILE = file(RULES, 'r')
@@ -94,13 +96,12 @@ RULES = yaml.load(INFILE)
 
 MODTIMES = {}
 
-debug('Getting modification times')
 build_mod(MODTIMES)
  
 while 1:
 	try:
-		debug('Checking if files match pattern and modification times')
 		for d in DIRECTORIES:
+			debug('Checking directory: {}', d)
 			for root, dirs, files in walk_fd(d):
 				for f in files:
 					for rule in RULES:
@@ -131,7 +132,6 @@ while 1:
 											error(e)
 								except OSError as e:
 									error('Unable to fork: {}', e)	
-		debug('Sleeping')
 		time.sleep(int(SECONDS))
 	except KeyboardInterrupt:	
 		sys.exit(1)
