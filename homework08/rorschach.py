@@ -61,8 +61,6 @@ def debug(message, *args):
 	if VERBOSE == True:
 		print message.format(*args)
  
-#parse command line
- 
 try:
 	opts,args = getopt.getopt(sys.argv[1:], "t:r:vh")
 except getopt.GetoptError as e:
@@ -85,10 +83,6 @@ for o, a in opts:
  
 if len(args) != 0:
 	DIRECTORIES = sys.argv[NUM:]
-
-print DIRECTORIES
-
-#main
  
 INFILE = file(RULES, 'r')
 debug('Loading yaml file')
@@ -111,7 +105,7 @@ while 1:
 								try:
 									debug('Forking')
 									pid = os.fork()
-									if pid ==0: #child
+									if pid ==0: 
  										try:
 											action = rule['action'].split(" ")[0]
 											try:
@@ -120,7 +114,7 @@ while 1:
 												realPath=root+"/"+f
 											obj = rule['action'].format(name=f,path=realPath)
 											strobj = obj.split(" ")[0:]
-											debug('Preforming Action')
+											debug('Executed action {} for {}', action, f)
 											os.execvp(action,strobj)
 										except OSError as e:
 											error('Unable to exec: {}', e)
